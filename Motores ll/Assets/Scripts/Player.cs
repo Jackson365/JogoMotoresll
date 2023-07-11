@@ -127,6 +127,16 @@ public class Player : MonoBehaviour
         }
     }
     
+    public void Damage(int dmg)
+    {
+        health -= dmg;
+
+        if(health <= 0)
+        {
+            //Chamar game over
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.layer == 8)
