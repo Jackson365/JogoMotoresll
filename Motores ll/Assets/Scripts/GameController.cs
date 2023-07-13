@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameControler : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     public Text healthText;
-    public static GameControler instance;
+    public static GameController instance;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
     }
@@ -19,7 +19,7 @@ public class GameControler : MonoBehaviour
         
     }
 
-    public UpdateLives(int value)
+    public void UpdateLives(int value)
     {
         healthText.text = "x " + value.ToString();
     }
