@@ -20,12 +20,15 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator anim;
 
+    private Vector3 respowCheck;
+
     private float movement;
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        respowCheck = transform.position;
 
         GameController.instance.UpdateLives(health);
     }
@@ -148,6 +151,7 @@ public class Player : MonoBehaviour
         if(health <= 0)
         {
             //Chamar game over
+            GameController.instance.GameOver();
         }
     }
 
@@ -162,6 +166,22 @@ public class Player : MonoBehaviour
         if (coll.gameObject.layer == 8)
         {
             isJumping = false;
+        }
+        if (coll.gameObject.layer == 9)
+        {
+            GameController.instance.GameOver();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Checkpoint")
+        {
+            transform.position = respowCheck;
+        }
+        else if(collision.tag == "Checkpoint")
+        {
+            respowCheck = transform.position;
         }
     }
 }
