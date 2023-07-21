@@ -157,6 +157,7 @@ public class Player : MonoBehaviour
         {
             //Chamar game over
             GameController.instance.GameOver();
+            Time.timeScale = 0f;
         }
     }
 

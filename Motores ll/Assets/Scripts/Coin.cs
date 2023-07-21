@@ -19,7 +19,7 @@ public class Coin : MonoBehaviour
         {
             som.Play();
             GameController.instance.UpdateScore(scoreCoin);
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject, 0.1f);
         }
     }
 }
