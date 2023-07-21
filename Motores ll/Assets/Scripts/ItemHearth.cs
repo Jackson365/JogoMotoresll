@@ -6,13 +6,20 @@ using UnityEngine;
 public class ItemHearth : MonoBehaviour
 {
     public int valueHaelth;
+    private AudioSource som;
+    
+    private void Awake()
+    {
+        som = GetComponent<AudioSource>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            som.Play();
             collision.gameObject.GetComponent<Player>().IncreaseLife(valueHaelth);
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1f);
         }
     }
 }

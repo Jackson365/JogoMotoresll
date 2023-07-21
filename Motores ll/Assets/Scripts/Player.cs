@@ -9,7 +9,10 @@ public class Player : MonoBehaviour
     public int health = 3;
     public float speed;
     public float jumpForce;
-
+    
+    public AudioSource tiro;
+    public AudioSource pulo;
+    
     public GameObject bow;
     public Transform Firepoint;
 
@@ -20,7 +23,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator anim;
 
-    private Vector3 respowCheck;
+    public Vector3 respowCheck;
 
     private float movement;
     // Start is called before the first frame update
@@ -90,6 +93,7 @@ public class Player : MonoBehaviour
                 rig.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 doubleJump = true;
                 isJumping = true;
+                pulo.Play();
             }
             else
             {
@@ -111,10 +115,11 @@ public class Player : MonoBehaviour
     IEnumerator Fire()
     {
         if (Input.GetKeyDown(KeyCode.E))
-        {
+        {   
             isFire = true;
             anim.SetInteger("transition", 3);
             GameObject Bow = Instantiate(bow, Firepoint.position, Firepoint.rotation);
+            tiro.Play();
 
             if (transform.rotation.y == 0)
             {
@@ -170,18 +175,6 @@ public class Player : MonoBehaviour
         if (coll.gameObject.layer == 9)
         {
             GameController.instance.GameOver();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Checkpoint")
-        {
-            transform.position = respowCheck;
-        }
-        else if(collision.tag == "Checkpoint")
-        {
-            respowCheck = transform.position;
         }
     }
 }
