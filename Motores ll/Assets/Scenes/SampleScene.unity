@@ -15561,11 +15561,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   speed: 8
-  jumpForce: 8
+  jumpForce: 9.9
   tiro: {fileID: 0}
   pulo: {fileID: 0}
-  bow: {fileID: 0}
-  Firepoint: {fileID: 0}
+  bow: {fileID: 3095713401438497293, guid: 30c2ee02647a796428fdd89127765014, type: 3}
+  Firepoint: {fileID: 847682299}
   respowCheck: {x: 0, y: 0, z: 0}
 --- !u!61 &404901781
 BoxCollider2D:
@@ -15608,8 +15608,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 3
+  m_Material: {fileID: 6200000, guid: 96be45c21ec4ccc46b0b78f7b1ce1045, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
