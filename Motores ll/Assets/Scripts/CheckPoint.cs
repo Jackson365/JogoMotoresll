@@ -9,7 +9,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<ControllerPlayer>().respowCheck = transform.position;
+            other.GetComponent<Player>().respowCheck = transform.position;
             Cam CameraDois = Camera.main.GetComponent<Cam>();
             CameraDois.Respawn = CameraDois.transform.position;
         }

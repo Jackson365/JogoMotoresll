@@ -18,7 +18,7 @@ public class ItemHearth : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             som.Play();
-            collision.gameObject.GetComponent<ControllerPlayer>().IncreaseLife(valueHaelth);
+            collision.gameObject.GetComponent<Player>().IncreaseLife(valueHaelth);
             Destroy(gameObject, 0.1f);
         }
     }

@@ -10,22 +10,25 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpForce;
     
-    public AudioSource tiro;
-    public AudioSource pulo;
+    public AudioSource attack;
+    public AudioSource jump;
+    public AudioSource walking;
     
     public GameObject bow;
     public Transform Firepoint;
 
     private bool isJumping;
     private bool doubleJump;
-    private bool isFire;
+    private bool isAttack;
     
     private Rigidbody2D rig;
     private Animator anim;
 
-    public Vector3 respowCheck;
-
     private float movement;
+    
+    public int damage;
+    
+    public Vector3 respowCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,7 +80,7 @@ public class Player : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
 
-        if (movement == 0 && !isJumping && !isFire)
+        if (movement == 0 && !isJumping && !isAttack)
         {
             anim.SetInteger("transition", 0);
         }
@@ -93,48 +96,38 @@ public class Player : MonoBehaviour
                 rig.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 doubleJump = true;
                 isJumping = true;
-                pulo.Play();
+                jump.Play();
             }
-            else
-            {
-                if (doubleJump)
-                {
-                    anim.SetInteger("transition", 2);
-                    rig.AddForce(new Vector2(0, jumpForce * 1), ForceMode2D.Impulse);
-                    doubleJump = false;
-                }
-            }
+            //else
+            //{
+                //if (doubleJump)
+                //{
+                    //anim.SetInteger("transition", 2);
+                    //rig.AddForce(new Vector2(0, jumpForce * 1), ForceMode2D.Impulse);
+                    //doubleJump = false;
+                //}
+            //}
         }
     }
 
     void BowFire()
     {
-        StartCoroutine("Fire");
+        StartCoroutine("Attack");
     }
 
-    IEnumerator Fire()
+    IEnumerator Attack()
     {
         if (Input.GetKeyDown(KeyCode.E))
-        {   
-            isFire = true;
+        {
+            AttackAudio();
+            isAttack = true;
             anim.SetInteger("transition", 3);
-            GameObject Bow = Instantiate(bow, Firepoint.position, Firepoint.rotation);
-            tiro.Play();
-
-            if (transform.rotation.y == 0)
-            {
-                Bow.GetComponent<Bow>().isRight = true;
-            }
             
-            if (transform.rotation.y == 180)
-            {
-                Bow.GetComponent<Bow>().isRight = false;
-            }
-            
-            yield return new WaitForSeconds(0.1f);
-            isFire = false;
+            yield return new WaitForSeconds(0.5f);
             anim.SetInteger("transition", 0);
+            isAttack = false;
         }
+        
     }
     
     public void Damage(int dmg)
@@ -177,5 +170,15 @@ public class Player : MonoBehaviour
         {
             GameController.instance.GameOver();
         }
+    }
+    
+    void AttackAudio()
+    {
+        attack.Play();
+    }
+
+    public void Passo()
+    {
+        walking.Play();
     }
 }

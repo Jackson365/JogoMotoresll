@@ -6,20 +6,15 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public int scoreCoin;
-    private AudioSource som;
-
-    private void Awake()
-    {
-        som = GetComponent<AudioSource>();
-    }
-
+    
+    public AudioSource caxixi;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            som.Play();
+            caxixi.Play();
             GameController.instance.UpdateScore(scoreCoin);
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject, 0.4f);
         }
     }
 }
