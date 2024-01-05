@@ -9,6 +9,8 @@ public class ControllerPlayer : MonoBehaviour
     public int health = 3;
     public float speed;
     public float jumpForce;
+
+    public int damage = 2;
     
     public AudioSource attack;
     public AudioSource jump;
@@ -124,6 +126,7 @@ public class ControllerPlayer : MonoBehaviour
             yield return new WaitForSeconds(0.4f);
             anim.SetInteger("transition", 0);
             isAttack = false;
+            
         }
     }
     

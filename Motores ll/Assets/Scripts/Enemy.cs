@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,6 +48,11 @@ public class Enemy : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+     
+    }
+
     public void Damage(int vida)
     {
         health -= vida;
@@ -63,6 +69,8 @@ public class Enemy : MonoBehaviour
                 //anim.SetInteger("AnimEnimy", 0);
             //}
     }
+
+
 
     public void OnCollisionEnter2D(Collision2D collision)
     {

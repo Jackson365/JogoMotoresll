@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public Text healthText;
     public int score;
     public Text scoreText;
-
+    
     public GameObject pauseObj;
     public GameObject gameOverObj;
     
